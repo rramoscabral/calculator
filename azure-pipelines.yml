@@ -21,9 +21,19 @@ steps:
     npm test
   displayName: 'npm install and build and test'
 
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+
 - task: DownloadBuildArtifacts@0
   inputs:
     buildType: 'current'
     downloadType: 'single'
     artifactName: 'Demo'
     downloadPath: '$(System.ArtifactsDirectory)'
+    
+    
